@@ -1,0 +1,66 @@
+#UI 层级管理
+1.支持不同层级的 UI 组织方式：
+BOTTOM：始终在最底层（如 HUD、背景 UI）。
+STACK：普通 UI，按照栈结构管理（打开新 UI 时隐藏旧 UI）。
+FLOAT：悬浮 UI，不受栈管理影响（如提示框）。
+TOP：始终在最上层（如 Loading、全屏弹窗）。
+2.Sorting Order 自动计算：
+保证 UI 按正确的顺序渲染，避免遮挡问题。
+UI 关闭时自动恢复下一个 UI。
+
+#UI窗口的过渡控制
+1.DOTween 动画（代码控制）：
+缩放（Scale In / Out）
+透明度渐变（Fade In / Out）
+位置变化（Slide In / Out）
+AnimationClip 动画（Animator 控制）
+
+2.允许美术团队使用 Animator 制作 UI 过渡动画。
+
+3.动画支持自定义参数：
+UI 可配置 不同的打开 / 关闭动画。
+支持 动画完成回调，用于额外的 UI 逻辑处理。
+
+#屏幕截屏
+1.捕捉当前屏幕作为 UI 背景：
+使用 RenderTexture 进行截屏，确保高效。
+支持 降低分辨率 以优化模糊计算的性能。
+2.截屏逻辑触发时机：
+当 UI 需要模糊背景时（如弹出对话框，后面背景变模糊），执行截屏操作，把截屏画面放在rendertexture里。
+UI 关闭时，清理 RenderTexture，释放内存。
+
+#高斯模糊背景支持
+对rendertexure的渲染使用shader来模糊，并作为背景放到背景UI上 即ImageRaw组件
+
+#UI 资源管理
+通过注册事件的方式，管理UI的显示关闭。 这里不用加载，而是使用挂在manager上的UI的gameobject来控制
+事件包括，UI打开，UI播放动画开始，UI播放动画结束， UI关闭
+
+
+#Scene 的结构
+- Managers
+    - LanguageManager
+    - UIManager  (管理所有 UI)
+
+- Canvas (UI 根节点)
+    - BackgroundPanel (背景层, UI 背景)
+        - BlurEffect (RawImage, 用于模糊背景)
+    - 其他界面Panel  
+    - ForegroundPanel (前景层, UI 过渡效果)
+        - TransitionEffect (用于界面切换时的遮罩)
+
+#需要添加的脚本
+1.UIManager：	挂在UIManager Gameobject上, 管理 UI 的打开、关闭、层级、动画、事件。
+2.UIWindowBase	 窗口基类，挂在对应的界面窗口上(Canvas里的相关界面)，用于 UI 过渡动画、交互, 动画类型和配置放在这个类里，可用于继承添加别的功能。
+3.UIBlurEffect	BlurEffect (BackgroundPanel)	屏幕截图 & 高斯模糊，用于背景模糊。
+4.UITransitionEffect	TransitionEffect (ForegroundPanel)	界面切换过渡效果，如黑屏渐变、白屏闪烁。
+
+#在UImanager 或者 UIWindowBase, 里需要响应的交互事件
+OnUIShow(string uiName)	当 UI 显示时触发
+OnUIAnimationStart(string uiName)	当 UI 开始播放动画时触发
+OnUIAnimationEnd(string uiName)	当 UI 动画播放完毕时触发
+OnUIClose(string uiName)	当 UI 关闭时触发
+OnUIScreenCaptured(RenderTexture texture)	当 UI 需要模糊背景时触发
+
+脚本放在 Scripts/UI/  目录中
+

@@ -1,0 +1,54 @@
+[
+  {
+    "key": "SETTINGS_TITLE",
+    "value": "Settings"
+  },
+  {
+    "key": "SETTINGS_SOUND",
+    "value": "Sound"
+  },
+  {
+    "key": "SETTINGS_MUSIC",
+    "value": "Music"
+  },
+  {
+    "key": "SETTINGS_VIBRATION",
+    "value": "Vibration"
+  },
+  {
+    "key": "SETTINGS_NOTIFICATIONS",
+    "value": "Notifications"
+  },
+  {
+    "key": "SETTINGS_LANGUAGE",
+    "value": "Language"
+  },
+  {
+    "key": "BUTTON_TC",
+    "value": "T&C"
+  },
+  {
+    "key": "BUTTON_PRIVACY",
+    "value": "Privacy"
+  },
+  {
+    "key": "BUTTON_SUPPORT",
+    "value": "Support"
+  },
+  {
+    "key": "TEXT_VERSION",
+    "value": "ver.1.0.0"
+  },
+  {
+    "key": "MAIN_HOME",
+    "value": "Home"
+  },
+  {
+    "key": "MAIN_SHOP",
+    "value": "Shop"
+  },
+  {
+        "key": "MAIN_BOOK",
+        "value": "Book"
+  }
+]

@@ -1,0 +1,98 @@
+实现界面语言功能切换
+下面是一份详细的需求及实现步骤清单，包括实现的主要功能、所需的工作内容、需要创建的文件以及文件的存放位置：
+
+1. 实现的主要功能
+多语言文本显示：
+UI 中的所有文本组件能根据当前选择的语言自动显示对应语言的文本内容。
+
+语言切换：
+用户点击语言切换按钮时，系统能更新全局当前语言，并通知所有 UI 文本组件实时刷新显示内容。
+
+基于独立 JSON 文件的文本数据管理：
+使用两个独立的 JSON 文件分别存储不同语言的文本数据，方便后续扩展和维护。
+
+2. 为实现该功能需要做的工作
+文本数据的设计与加载：
+
+设计独立的 JSON 文件：
+每个 JSON 文件只存储一种语言的文本内容。
+例如：
+Localization_en.json 存放英文文本，如：
+json
+复制
+{
+  "WELCOME_MESSAGE": "Welcome!",
+  "SETTINGS_SOUND": "Sound"
+}
+Localization_zh.json 存放中文文本，如：
+json
+复制
+{
+  "WELCOME_MESSAGE": "欢迎！",
+  "SETTINGS_SOUND": "声音"
+}
+数据加载与解析：
+多语言管理器在启动或切换语言时，根据当前选择的语言，加载对应的 JSON 文件，并解析成内存中的数据结构（例如 Dictionary<string, string>）。
+多语言管理器的实现：
+
+创建一个 LanguageManager 脚本，负责：
+根据当前语言加载相应的 JSON 文件
+解析并存储文本数据
+维护当前语言设置（如 CurrentLanguage 变量）
+提供 GetText(string key) 接口供 UI 组件查询对应文本
+广播语言切换事件，通知所有监听的 UI 组件更新显示
+LocalizedText 脚本的实现：
+
+创建 LocalizedText 脚本，挂载在需要显示多语言文本的 UI 组件上：
+在 Inspector 中配置一个文本 ID（例如 "WELCOME_MESSAGE"）
+初始化时通过 LanguageManager.GetText(textID) 获取当前语言下的文本内容，并赋值到 Text/TMP_Text 组件
+监听语言切换事件，在语言更新时调用刷新方法更新文本显示
+UI 预制体的配置：
+
+建立一个基础文本预制体（BaseLocalizedText.prefab），预制体包含：
+一个 Text 或 TextMeshPro 组件
+已挂载 LocalizedText 脚本
+后续所有需要支持多语言的 UI 文本都基于该预制体创建或直接挂载 LocalizedText 脚本
+语言切换按钮的实现：
+
+添加语言切换按钮，绑定点击事件，调用 LanguageManager 中的切换语言接口
+切换后，LanguageManager 更新当前语言、加载对应 JSON 文件，并触发刷新事件
+3. 创建的文件及其存放位置
+JSON 数据文件：
+
+文件名称：
+Localization_en.json（存放英文文本）
+Localization_zh.json（存放中文文本）
+存放位置：
+推荐放在 Resources/Localization/ 文件夹下，方便使用 Resources.Load 方法加载
+脚本文件：
+
+LanguageManager.cs
+功能： 负责加载对应语言的 JSON 文件、管理文本数据、维护当前语言设置、提供文本查询接口和广播语言切换事件
+存放位置： Assets/Scripts/Localization/
+LocalizedText.cs
+功能： 挂载在 UI 文本组件上，根据配置的文本 ID 调用 LanguageManager 接口获取对应文本，监听并响应语言切换更新
+存放位置： 同样建议放在 Assets/Scripts/Localization/
+
+
+语言枚举文件（如 LanguageType.cs）：
+功能： 定义支持的语言枚举或标识符，如 English、Chinese
+存放位置： Assets/Scripts/Localization/ 或 Assets/Scripts/Enums/
+总结
+主要功能：
+
+自动根据当前语言显示正确文本
+支持用户点击按钮切换语言，并实时刷新 UI 文本
+使用独立 JSON 文件管理文本数据，便于后续扩展和维护
+实现步骤：
+
+设计并创建两个独立的 JSON 文件（Localization_en.json 和 Localization_zh.json）
+实现 LanguageManager 脚本来加载 JSON、维护当前语言、提供文本查询和语言切换接口
+实现 LocalizedText 脚本挂载在 UI 组件上，实现文本初始化和刷新
+配置基础 UI 预制体和语言切换按钮，确保语言切换后所有 UI 组件能自动更新文本
+文件创建与位置：
+
+JSON 文件放在 Resources/Localization/ 下
+脚本文件放在 Assets/Scripts/Localization/ 下
+
+通过以上方案，可以实现一个基于独立 JSON 文件的多语言系统，每个文件对应一种语言，既便于管理也方便未来扩展。

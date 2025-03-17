@@ -1,0 +1,54 @@
+[
+  {
+    "key": "SETTINGS_TITLE",
+    "value": "设置"
+  },
+  {
+    "key": "SETTINGS_SOUND",
+    "value": "音效"
+  },
+  {
+    "key": "SETTINGS_MUSIC",
+    "value": "音乐"
+  },
+  {
+    "key": "SETTINGS_VIBRATION",
+    "value": "震动"
+  },
+  {
+    "key": "SETTINGS_NOTIFICATIONS",
+    "value": "通知"
+  },
+  {
+    "key": "SETTINGS_LANGUAGE",
+    "value": "语言"
+  },
+  {
+    "key": "BUTTON_TC",
+    "value": "条款和条件"
+  },
+  {
+    "key": "BUTTON_PRIVACY",
+    "value": "隐私"
+  },
+  {
+    "key": "BUTTON_SUPPORT",
+    "value": "客服支持"
+  },
+  {
+    "key": "TEXT_VERSION",
+    "value": "版本1.0.0"
+  },
+  {
+    "key": "MAIN_HOME",
+    "value": "家园"
+  },
+  {
+    "key": "MAIN_SHOP",
+    "value": "商店"
+  },
+  {
+        "key": "MAIN_BOOK",
+        "value": "书"
+  }
+]
