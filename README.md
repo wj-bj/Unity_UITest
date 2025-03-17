@@ -8,6 +8,7 @@ The project is to construct UI for testing the development UI system with Unity 
 </p>
 
 This project consisof three UI panel: the UI for Main screen, Setting enviroment and Level complete. Each UI panel is linked by pressing the specific button which is indicated on the figure.
+
 **Home Screen UI** – The main interface containing navigation elements with bar animation via scripts.
 
 **Settings Popup UI** – A modular settings panel designed for easy expansion supporint localization function.
@@ -21,22 +22,6 @@ The implemented functions are included as the following
 * Localization structured for multi-language adaptation 
 * Some vfx, animation and shader for dynamic effect.
 
-## Technique
-Features in the project are list as follows:
-
-**Cellular Automata**: Generate density map and decoration map, which are required for 3D Terrain and the vegetation on it.
-
-**Marching Cubes** : Generate triangular meshed according to the voxel density.
-
-**Force-based steering**: Controll the movement of Game objects, such as seek, flee, path following, avoid collision.
-
-**Behavior Tree** : Controll AI behavior
-
-**Utility agent**: Controll AI logic
-
-**Compute Shader**: Put the most time-consuming calculation on GPU side, such as mesh generation, fish animation
-
-**Command Buffer**: To postprocess the render from camera, adding special effect like screen-based depth and distortion to simulate the undersea effect.
 
 ## Setup
 * This project was developed on Unity version `Unity 6`.
