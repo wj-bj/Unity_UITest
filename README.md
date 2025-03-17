@@ -50,9 +50,8 @@ The implemented functions are included as the following
 * Currently, window animations are implemented using inheritance from a base WindowUI, which includes foreground and background animations along with feedback. This could be refactored into a component-based system (IComponent), making it easier to maintain and extend.
 * All UI elements are instantiated and hidden in the scene by default. Instead, an asynchronous system should be implemented to dynamically instantiate them as needed.
 * A GameEvent system is currently missing and should be introduced to improve event handling and communication between UI elements.
-* There is no event disregister in the implmented as there is no formal Management to create and destroy UI in order.
 * There is no event deregistration in the implementation, as there is no formal management system to properly create and destroy UI elements in right order
-There is a loading UI and a gradient UI for the transition and background system, but they are not funtional, only added here as a demonstration of expandability.
+* There is a loading UI and a gradient UI for the transition and background system, but they are not funtional, only added here as a demonstration of expandability.
 * The atlas was generated based on the UI layout, and the original resolution was already quite high. I had to use a 4096 texture size to fit everything in, whereas typically, it should be kept within 2048.
 
 ## Reference
