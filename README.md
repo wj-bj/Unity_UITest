@@ -1,4 +1,4 @@
-# UnderseaPCG
+# UITest
 The project is to construct UI for testing the development UI system with Unity 6
 ## Video Demonstration
 * The video demonstration is available to view [here](https://youtu.be/5JS3QZU3JSY).
