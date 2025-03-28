@@ -14,6 +14,7 @@ public class UITransitionEffect : MonoBehaviour, IForegroundEffect
     [SerializeField] private ForegroundEffectType effectType = ForegroundEffectType.Default;
   
     [SerializeField] private float transitionDuration = 0.5f;
+    [SerializeField] private float transitionValueMax = 1f;
     [SerializeField] private Ease transitionEase = Ease.InOutQuad;
     
     [Header("Dissolve Settings")]
@@ -93,7 +94,7 @@ public class UITransitionEffect : MonoBehaviour, IForegroundEffect
         currentSequence = DOTween.Sequence();
         
         // 设置初始溶解值为1（完全显示）
-        dissolveImage.material.SetFloat(dissolvePropertyName, 1f);
+        dissolveImage.material.SetFloat(dissolvePropertyName, transitionValueMax);
         
         // 创建溶解动画序列
         // 第一阶段：显示（已经设置为1）

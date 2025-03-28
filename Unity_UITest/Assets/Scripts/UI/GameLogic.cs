@@ -11,5 +11,17 @@ public class GameLogic : MonoBehaviour
         
     }
 
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            UIManager.Instance.Show("HomeScreen_G");
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            UIManager.Instance.Show("HomeScreen");
+        }
+    }
+
     
 }

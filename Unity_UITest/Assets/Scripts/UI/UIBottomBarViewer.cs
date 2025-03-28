@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Unity.Mathematics;
 
 
 public class UIBottomBarViewer : MonoBehaviour
@@ -76,6 +77,7 @@ public class UIBottomBarViewer : MonoBehaviour
             // 第一次激活时特殊处理
             if (isFirstActivation && bgmMove != null)
             {
+                
                 isFirstActivation = false;
                 // 获取toggle位置作为目标位置
                 RectTransform toggleRect = toggle.GetComponent<RectTransform>();
@@ -99,6 +101,7 @@ public class UIBottomBarViewer : MonoBehaviour
                 }
             }
         }
+        
         ScheduleLayoutUpdate();
     }
 
@@ -115,6 +118,7 @@ public class UIBottomBarViewer : MonoBehaviour
                 Vector3 targetPosition = toggleRect.position;
                 targetPosition.x += positionOffset.x;
                 targetPosition.y += positionOffset.y;
+              
                 
                 // 确保bgm_move是激活的
                 if (!bgmMove.gameObject.activeSelf)
@@ -136,7 +140,14 @@ public class UIBottomBarViewer : MonoBehaviour
                     Vector3 startPosition = bgmMove.position;
                     
                     // 计算移动方向（这个会在移动完成后使用）
-                    bool movingRight = targetPosition.x > startPosition.x;
+                    bool movingRight = false;
+                    bool movingLeft = false;
+                    if (!Mathf.Approximately(targetPosition.x,startPosition.x))
+                    {
+                        movingRight = targetPosition.x > startPosition.x;
+                        movingLeft = targetPosition.x < startPosition.x;
+                        
+                    }
                     
                     // 移动时只执行水平移动动画，不改变垂直位置
                     Vector3 horizontalTarget = targetPosition;
@@ -147,7 +158,12 @@ public class UIBottomBarViewer : MonoBehaviour
                         .SetEase(Ease.OutQuad)
                         .OnComplete(() => {
                             // 移动完成后，执行拉伸动画
-                            ApplyStretchEffectWithPivot(movingRight);
+                            if (movingRight || movingLeft)
+                            {
+                               
+                                ApplyStretchEffectWithPivot(movingRight);
+                            }   
+                           
                             
                             // 然后平滑调整y坐标到目标位置（如果需要）
                             if (!Mathf.Approximately(bgmMove.position.y, targetPosition.y))
@@ -265,7 +281,7 @@ public class UIBottomBarViewer : MonoBehaviour
         // 在布局重建后移动bgm_move到选中的Toggle
         if (selectedToggle != null)
         {
-            MoveBgmToToggle(selectedToggle);
+             MoveBgmToToggle(selectedToggle);
         }
       
         layoutUpdateScheduled = false; // allow next update
