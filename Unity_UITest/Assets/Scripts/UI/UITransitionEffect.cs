@@ -9,7 +9,8 @@ public class UITransitionEffect : MonoBehaviour, IForegroundEffect
     public enum ImageTransitionEffectType
     {
         None,
-        Dissolve
+        Dissolve,
+        DissolveGrid
     }
     [SerializeField] private ForegroundEffectType effectType = ForegroundEffectType.Default;
   
