@@ -1,13 +1,13 @@
 # UITest
 The project is to construct UI for testing the development UI system with Unity 6
 ## Video Demonstration
-* The video demonstration is available to view [here](https://youtu.be/wb_heEd8LsU).
+* The video demonstration is available to view [here](https://youtube.com/shorts/Czn1FipqSxI).
 ## Introduction
 <p align="center">
     <img src="pics/flow.png" height="586" width="812">
 </p>
 
-This project consisof three UI panel: the UI for Main screen, Setting enviroment and Level complete. Each UI panel is linked by pressing the specific button which is indicated on the figure.
+This project consisof three UI panel: the UI for Main screen, Setting enviroment and Level complete. Each UI panel is linked by pressing the specific button which is indicated on the figure. Press G to switch the UI theme to Ghibli style, only for mainscreen UI.
 
 **Home Screen UI** – The main interface containing navigation elements with bar animation via scripts.
 
@@ -58,10 +58,9 @@ The implemented functions are included as the following
 * Dotween for GameObject animation
 
 ## Thought
-1.This is my first time using Cursor, an AI-assisted development tool. It significantly accelerates the realization of ideas—as long as you can clearly describe your requirements and understand the generated code, it truly transforms most programming workflows.However, due to the context-based nature of the tool, there are times when the AI modifies sections that were manually adjusted before, reverting them to its own version. Occasionally, even after repeatedly correcting and refining the output, the code still fails to converge into the desired result, leading to errors during execution.
+This is my first time using Cursor, an AI-assisted development tool. It significantly accelerates the realization of ideas—as long as you can clearly describe your requirements and understand the generated code, it truly transforms most programming workflows.However, due to the context-based nature of the tool, there are times when the AI modifies sections that were manually adjusted before, reverting them to its own version. Occasionally, even after repeatedly correcting and refining the output, the code still fails to converge into the desired result, leading to errors during execution.
 
-2.I spent a significant amount of time creating UI prefabs. Initially, since I was provided with a layout file composed from a .psd, I followed a workflow where the .psd was imported into Unity as a .psb file. However, after completing the work, I realized that the .psb files were too large, exceeding the normal upload limits for GitHub.As a result, I had to switch to a different approach—exporting individual images from the .psd and then assembling them into an atlas within Unity. However, the automatic atlas generation feature tends to allocate large image sizes, especially when dealing with background images, as they sometimes don’t fit properly into the atlas.
+
 
 ## Time Spent
 The total time for the three UI screens was 2.5 workdays. Just the UI itself, including multiple revisions, took about 1 day. The coding part took roughly 1 day, including writing and debugging, with debugging taking up the majority of the time. Animation, shaders, and VFX took about half a day.
-All of this was based on the fact that I hadn’t used Unity for quite a while.
